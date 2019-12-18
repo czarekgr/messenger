@@ -5,14 +5,29 @@ import datetime
 
 with open('message_1.json' ) as json_file:
     data = json.load(json_file)
-    for p in data['messages']:
 
 
-        print(p["sender_name"].encode("latin").decode("utf"))
-        czas = datetime.datetime.fromtimestamp(p["timestamp_ms"]/1000.0)
-        print(czas.date(), "", czas.time())
+    sender_time_old = 'dupa'
+    for p in reversed(data['messages']):
+
+        sender_name = p["sender_name"].encode("latin").decode("utf")
+        if sender_name == 'Cezary Grądys':
+            margines = '      '
+        else:
+            margines = ''
+
+
+        time = datetime.datetime.fromtimestamp(p["timestamp_ms"]/1000.0).strftime("%Y-%m-%d %H:%m")
+        sender_time = sender_name + '  ' + time
+
+
+        if sender_time_old != sender_time:
+            print("\n" + margines + sender_time)
+            sender_time_old=sender_time
+
+
         if 'content' in p:
-            print(p['content'].encode("latin").decode("utf")) # podzielić \n i odwrócić! dla tac!
+            print(margines + p['content'].encode("latin").decode("utf")) # podzielić \n i odwrócić! dla tac!
 
         if 'gifs' in p:
             print(p['gifs'])
@@ -21,7 +36,7 @@ with open('message_1.json' ) as json_file:
             print(p['photos'])
 
         if 'sticker' in p:
-            print(p['sticker'])
+            print( p['sticker'])
 
         if 'videos' in p:
             print(p['videos'])
@@ -33,12 +48,6 @@ with open('message_1.json' ) as json_file:
             print(p['reactions'])
 
 
-        if 'share' in p:
-            print(p['share'])
-
-
-        if 'type' in p:
-            print(p['type'])
 
 
 
