@@ -3,6 +3,15 @@
 import json
 import datetime
 
+
+
+def marginesy(l, margines):
+    k="\n" + margines
+    l = k.join(l.split("\n"))
+    return(l)
+
+
+
 with open('message_1.json' ) as json_file:
     data = json.load(json_file)
 
@@ -27,24 +36,30 @@ with open('message_1.json' ) as json_file:
 
 
         if 'content' in p:
-            print(margines + p['content'].encode("latin").decode("utf")) # podzielić \n i odwrócić! dla tac!
+            print(margines + marginesy(p['content'].encode("latin").decode("utf"),margines)) # podzielić \n i odwrócić! dla tac!
 
         if 'gifs' in p:
+            print(margines, end='')
             print(p['gifs'])
 
         if 'photos' in p:
+            print(margines, end='')
             print(p['photos'])
 
         if 'sticker' in p:
+            print(margines, end='')
             print( p['sticker'])
 
         if 'videos' in p:
+            print(margines, end='')
             print(p['videos'])
 
         if 'share' in p:
+            print(margines, end='')
             print(p['share'])
 
         if 'reactions' in p:
+            print(margines, end='')
             print(p['reactions'])
 
 
