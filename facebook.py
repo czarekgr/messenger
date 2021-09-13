@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/python3
 
 import json
 import datetime
@@ -10,7 +10,7 @@ def marginesy(l, margines):
     return (l)
 
 
-for i in range(29, 0, -1):
+for i in range(37, 0, -1):
     file = 'message_' + str(i) + '.json'
 
     with open(file) as json_file:
@@ -25,7 +25,7 @@ for i in range(29, 0, -1):
             else:
                 margines = '\t'
 
-            time = datetime.datetime.fromtimestamp(p["timestamp_ms"] / 1000.0).strftime("%Y-%m-%d %H:%m")
+            time = datetime.datetime.fromtimestamp(p["timestamp_ms"] / 1000.0).strftime("%Y-%m-%d %H:%M")
             sender_time = sender_name + '  ' + time
 
             if sender_time_old != sender_time:
